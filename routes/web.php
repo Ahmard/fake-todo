@@ -13,16 +13,16 @@
 |
 */
 
-use App\Http\Controllers\PostController;
 
 $router->get('/', function () use ($router) {
     return \App\Http\JsonResponse::success(['message' => 'Hello World']);
 });
 
-$router->get('/posts', 'PostController@list');
-$router->post('/posts', 'PostController@create');
-$router->get('/posts/{id}', 'PostController@find');
-$router->get('/posts/{id}/comments', 'PostController@postComments');
-$router->put('/posts/{id}', 'PostController@update');
-$router->patch('/posts/{id}', 'PostController@patch');
-$router->delete('/posts/{id}', 'PostController@delete');
+$router->group(['prefix' => 'api'], function () use ($router){
+    $router->get('/todos', 'TodoController@list');
+    $router->post('/todos', 'TodoController@create');
+    $router->get('/todos/{id}', 'TodoController@find');
+    $router->put('/todos/{id}', 'TodoController@update');
+    $router->patch('/todos/{id}', 'TodoController@patch');
+    $router->delete('/todos/{id}', 'TodoController@delete');
+});
