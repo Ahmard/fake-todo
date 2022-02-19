@@ -1,0 +1,56 @@
+GET http://localhost:8000/posts
+Accept: application/json
+
+###
+
+GET http://localhost:8000/posts?userId=2
+Accept: application/json
+
+###
+
+GET http://localhost:8000/posts/2222
+Accept: application/json
+
+###
+
+GET http://localhost:8000/posts/2/comments
+Accept: application/json
+
+###
+
+POST http://localhost:8000/posts
+Content-Type: application/json
+
+{
+    "title": "Hello",
+    "body": "Such a wondrous world we live in!!!",
+    "userId": 1
+}
+
+###
+
+PUT http://localhost:8000/posts/1
+Content-Type: application/json
+
+{
+    "title": "World",
+    "body": "Such a wondrous world we live in!!!",
+    "userId": 1
+}
+
+###
+
+PATCH http://localhost:8000/posts/1
+Content-Type: application/json
+
+{
+    "title": "Earth"
+}
+
+###
+
+
+DELETE http://localhost:8000/posts/1
+Content-Type: application/json
+
+###
