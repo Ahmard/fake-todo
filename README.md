@@ -12,6 +12,9 @@ cd fake-todo
 composer update
 ```
 
+## Configuration
+Edit [.env](.env) file to provide database & other configurable information
+
 ## Database
 ```
 php artisan migrate --seed
