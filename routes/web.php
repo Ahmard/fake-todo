@@ -16,7 +16,7 @@
 use App\Http\Controllers\PostController;
 
 $router->get('/', function () use ($router) {
-    return file_get_contents(__DIR__ . '/index.html');
+    return \App\Http\JsonResponse::success(['message' => 'Hello World']);
 });
 
 $router->get('/posts', 'PostController@list');
