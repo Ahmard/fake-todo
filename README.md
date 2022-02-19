@@ -3,6 +3,8 @@
 ## Installation
 Clone the repository
 
+I've added some decorator to decorate the json response syntax.
+
 Please note that this project requires **PHP 8.1**
 ```
 git clone git@github.com:ahmard/fake-todo.git
