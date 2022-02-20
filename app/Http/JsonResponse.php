@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse as LaravelJsonResponse;
 
 class JsonResponse
 {
-    public static function success(mixed $data, int $status = 200, array $headers = []): LaravelJsonResponse
+    public static function success($data, int $status = 200, array $headers = []): LaravelJsonResponse
     {
         return response()->json(
             [
@@ -19,7 +19,7 @@ class JsonResponse
         );
     }
 
-    public static function error(mixed $data, int $status = 500, array $headers = []): LaravelJsonResponse
+    public static function error($data, int $status = 500, array $headers = []): LaravelJsonResponse
     {
         return response()->json(
             [
