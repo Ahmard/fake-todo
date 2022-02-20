@@ -15,14 +15,19 @@
 
 
 $router->get('/', function () use ($router) {
-    return \App\Http\JsonResponse::success(['message' => 'Hello World']);
+    return view('index');
 });
 
-$router->group(['prefix' => 'api'], function () use ($router){
+$router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/todos', 'TodoController@list');
     $router->post('/todos', 'TodoController@create');
     $router->get('/todos/{id}', 'TodoController@find');
+
     $router->put('/todos/{id}', 'TodoController@update');
     $router->patch('/todos/{id}', 'TodoController@patch');
+    $router->post('/todos/{id}/put', 'TodoController@patch');  // PUT request is not supported by axios
+    $router->post('/todos/{id}/patch', 'TodoController@patch');
+
+    $router->get('/todos/{id}/delete', 'TodoController@delete');
     $router->delete('/todos/{id}', 'TodoController@delete');
 });
