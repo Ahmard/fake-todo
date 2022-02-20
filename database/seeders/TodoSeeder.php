@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Enums\TodoEnum;
 use App\Models\Todo;
 use Illuminate\Database\Seeder;
 
@@ -19,7 +18,7 @@ class TodoSeeder extends Seeder
     public function run(): void
     {
         foreach ($this->todos as $todo) {
-            Todo::create($todo[0], TodoEnum::STATUS_PENDING, $todo[1]);
+            Todo::create($todo[0], Todo::STATUS_ACTIVE, $todo[1]);
         }
     }
 }
