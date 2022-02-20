@@ -21,7 +21,7 @@ Content-Type: application/json
 {
     "title": "Hello",
     "userId": 1,
-    "status": 2
+    "status": 1
 }
 
 ### Update todo
