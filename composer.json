@@ -30,7 +30,6 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-autoload-dump": [
-            "@php -r \"unlink('.env');\"",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ]
     },
