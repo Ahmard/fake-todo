@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": "^7.4",
-        "ext-sqlite3": "*",
         "laravel/lumen-framework": "^8.0"
     },
     "require-dev": {
