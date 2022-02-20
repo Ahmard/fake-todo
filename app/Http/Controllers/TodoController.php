@@ -132,6 +132,7 @@ class TodoController extends Controller
             return JsonResponse::success(
                 Todo::query()
                     ->where('userId', $request['userId'])
+                    ->orderBy('id')
                     ->get()
             );
         }
