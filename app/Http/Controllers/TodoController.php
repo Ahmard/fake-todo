@@ -40,18 +40,18 @@ class TodoController extends Controller
      */
     public function update(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->json()->set('id', $request['id']);    // Let's put the id in json body to validate it too
+        $todo = Todo::query()->find($request['id']);
+
+        if (empty($todo)) {
+            return JsonResponse::error(['message' => 'Such todo does not exists'], 404);
+        }
 
         $validated = $this->validate($request, [
-            'id' => 'required|int|exists:todos,id',
             'title' => 'required|min:3|max:100',
             'userId' => 'required|int|exists:users,id',
             'status' => 'int|min:0|max:1',
         ]);
 
-        $request->json()->remove('id'); // We remove it now
-
-        $todo = Todo::query()->find($validated['id']);
         $todo->update($validated);
 
         return JsonResponse::success($todo);
@@ -66,18 +66,18 @@ class TodoController extends Controller
      */
     public function patch(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->json()->set('id', $request['id']);    // Let's put the id in json body to validate it too
+        $todo = Todo::query()->find($request['id']);
+
+        if (empty($todo)) {
+            return JsonResponse::error(['message' => 'Such todo does not exists'], 404);
+        }
 
         $validated = $this->validate($request, [
-            'id' => 'required|int|exists:todos,id',
             'title' => 'min:3|max:100',
             'userId' => 'int|exists:users,id',
             'status' => 'int|min:0|max:1',
         ]);
 
-        $request->json()->remove('id'); // We remove it now
-
-        $todo = Todo::query()->find($validated['id']);
         $todo->update($validated);
 
         return JsonResponse::success($todo);
@@ -88,19 +88,16 @@ class TodoController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
-     * @throws ValidationException
      */
     public function delete(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request->json()->set('id', $request['id']);    // Let's put the id in json body to validate it too
+        $todo = Todo::query()->find($request['id']);
 
-        $validated = $this->validate($request, [
-            'id' => 'required|int|exists:todos,id',
-        ]);
+        if (empty($todo)) {
+            return JsonResponse::error(['message' => 'Such todo does not exists'], 404);
+        }
 
-        $request->json()->remove('id'); // We remove it now
-
-        $todo = Todo::query()->find($validated['id']);
+        $todo = Todo::query()->find($request['id']);
         $todo->delete();
 
         return JsonResponse::success(['message' => 'Todo deleted successfully']);
@@ -138,7 +135,6 @@ class TodoController extends Controller
                     ->get()
             );
         }
-
 
         return JsonResponse::success(Todo::all());
     }
